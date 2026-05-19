@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>墨韵诗词 - 国风诗词短句</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ink-bg"></div>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">墨韵诗词</h1>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="icon sun">☀</span>
+                <span class="icon moon">☽</span>
+            </div>
+        </header>
+
+        <nav class="category-nav">
+            <button class="category-btn active" data-category="all">全部</button>
+            <button class="category-btn" data-category="tang-song">唐诗宋词</button>
+            <button class="category-btn" data-category="ancient">古风文案</button>
+            <button class="category-btn" data-category="solar">节气诗词</button>
+            <button class="category-btn" data-category="beautiful">唯美短句</button>
+        </nav>
+
+        <main class="main-content">
+            <div class="poem-card">
+                <div class="poem-content" id="poemContent">
+                    <p class="poem-text" id="poemText">人生若只如初见</p>
+                    <p class="poem-author" id="poemAuthor">—— 纳兰性德</p>
+                </div>
+                <div class="poem-meaning" id="poemMeaning" style="display: none;">
+                    <h3>释义</h3>
+                    <p id="meaningText">意中人相处，如果后来产生了怨恨、埋怨，没有了刚刚相识的时候的美好、淡然，那么一切还是停留在初次见面的时候为好。</p>
+                </div>
+                <div class="poem-actions">
+                    <button class="action-btn" id="randomBtn">
+                        <span class="btn-icon">🎲</span>
+                        <span>随机摘抄</span>
+                    </button>
+                    <button class="action-btn" id="meaningBtn">
+                        <span class="btn-icon">📖</span>
+                        <span>诗词释义</span>
+                    </button>
+                    <button class="action-btn" id="copyBtn">
+                        <span class="btn-icon">📋</span>
+                        <span>一键复制</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="poems-list" id="poemsList"></div>
+        </main>
+
+        <footer class="footer">
+            <p>墨韵诗词 · 国风雅致</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">已复制到剪贴板</div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

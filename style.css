@@ -1,0 +1,401 @@
+:root {
+    --ink-dark: #1a1a1a;
+    --ink-medium: #2d2d2d;
+    --ink-light: #4a4a4a;
+    --paper-white: #f5f5f0;
+    --paper-cream: #faf8f5;
+    --accent-red: #8b4513;
+    --accent-gold: #b8860b;
+    --text-light: #333;
+    --text-dark: #e8e8e8;
+    --bg-light: var(--paper-cream);
+    --bg-dark: var(--ink-dark);
+    --card-light: rgba(255, 255, 255, 0.9);
+    --card-dark: rgba(45, 45, 45, 0.9);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background: var(--bg-light);
+    color: var(--text-light);
+    min-height: 100vh;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body.dark-mode {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+.ink-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.08;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(100, 100, 100, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(150, 150, 150, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(80, 80, 80, 0.2) 0%, transparent 70%);
+}
+
+body.dark-mode .ink-bg {
+    opacity: 0.15;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(200, 200, 200, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(180, 180, 180, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(160, 160, 160, 0.2) 0%, transparent 70%);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    text-align: center;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+.title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(135deg, #ddd, #bbb);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .theme-toggle {
+    background: linear-gradient(135deg, #444, #222);
+}
+
+.theme-toggle .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle .sun {
+    left: 8px;
+    opacity: 1;
+}
+
+.theme-toggle .moon {
+    right: 8px;
+    opacity: 0.3;
+}
+
+body.dark-mode .theme-toggle .sun {
+    opacity: 0.3;
+}
+
+body.dark-mode .theme-toggle .moon {
+    opacity: 1;
+}
+
+.category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.category-btn {
+    padding: 10px 25px;
+    border: 2px solid var(--ink-light);
+    background: transparent;
+    color: var(--text-light);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .category-btn {
+    border-color: var(--ink-light);
+    color: var(--text-dark);
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.poem-card {
+    background: var(--card-light);
+    border-radius: 20px;
+    padding: 50px 40px;
+    margin-bottom: 40px;
+    box-shadow: 
+        0 10px 40px var(--shadow-light),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode .poem-card {
+    background: var(--card-dark);
+    box-shadow: 
+        0 10px 40px var(--shadow-dark),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.poem-card::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid rgba(139, 69, 19, 0.2);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+.poem-content {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.poem-text {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 2.5rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+body.dark-mode .poem-text {
+    color: var(--text-dark);
+}
+
+.poem-author {
+    font-size: 1.1rem;
+    color: var(--accent-red);
+    opacity: 0.8;
+    letter-spacing: 3px;
+}
+
+.poem-meaning {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.05), rgba(184, 134, 11, 0.05));
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border-left: 4px solid var(--accent-red);
+}
+
+body.dark-mode .poem-meaning {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(184, 134, 11, 0.1));
+}
+
+.poem-meaning h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--accent-red);
+}
+
+.poem-meaning p {
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.poem-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+}
+
+.action-btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+}
+
+.poems-list {
+    display: grid;
+    gap: 20px;
+}
+
+.poem-item {
+    background: var(--card-light);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow-light);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+body.dark-mode .poem-item {
+    background: var(--card-dark);
+    box-shadow: 0 5px 20px var(--shadow-dark);
+}
+
+.poem-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow-light);
+}
+
+body.dark-mode .poem-item:hover {
+    box-shadow: 0 10px 30px var(--shadow-dark);
+}
+
+.poem-item-text {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.poem-item-author {
+    font-size: 0.9rem;
+    color: var(--accent-red);
+    opacity: 0.7;
+}
+
+.poem-item-category {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(184, 134, 11, 0.1));
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--accent-red);
+}
+
+.footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(139, 69, 19, 0.2);
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-size: 0.95rem;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .poem-text {
+        font-size: 1.8rem;
+    }
+
+    .poem-card {
+        padding: 30px 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .theme-toggle {
+        position: static;
+        transform: none;
+    }
+
+    .category-nav {
+        gap: 8px;
+    }
+
+    .category-btn {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+
+    .action-btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
